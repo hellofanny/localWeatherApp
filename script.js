@@ -62,4 +62,30 @@ function convertToFahrenheit() {
     return ((temperature * 1.8) + 32);
 }
 
+function getDayAndTime(){
+    var date = new Date(); 
+    var hours = date.getHours(),
+    minutes = date.getMinutes(),
+    day = date.getDay(),
+    amPm = ' AM';
+
+    if (hours > 12){
+        hours -= 12;
+        amPm = ' PM';
+    } else if (hours === 0){
+        hours = 12;
+    }
+
+    if (minutes < 10) {
+        minutes = '0' + minutes;
+    }
+
+    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    
+    $("#day-time").text(weekday[day] + ", " + hours + ":" + minutes + amPm);
+}
+
+
+
 window.addEventListener("DOMContentLoaded", getWeather);
+window.addEventListener("DOMContentLoaded", getDayAndTime);
