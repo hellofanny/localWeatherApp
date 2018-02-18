@@ -42,6 +42,7 @@ h1 {
 #scales-options p{
     margin-bottom: 0.2rem;
     color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }
 
 .temperature-scale {
@@ -83,4 +84,8 @@ h1 {
 .time-updated p{
     font-size: 0.8rem;
     margin-right: 0.3rem;
+}
+
+#refresh {
+    cursor: pointer;
 }

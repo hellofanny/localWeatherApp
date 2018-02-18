@@ -21,7 +21,6 @@ function setPosition(position) {
 
     currentLat = position.coords.latitude;
     currentLon = position.coords.longitude;
-
     getWeather();
 }
 
@@ -30,7 +29,7 @@ function getWeather() {
     var testURL = "https://fcc-weather-api.glitch.me/api/current?lat=35&lon=139";
     var requestURL = baseURL + currentLat + "&lon=" + currentLon;
 
-    $.getJSON(testURL,
+    $.getJSON(requestURL,
         function (data) {
             temperature = data.main.temp;
             $("#temperature").text(temperature + "º");
@@ -91,7 +90,7 @@ function getDayAndTime(){
     $("#time").text("updated at " + hours + ":" + minutes + amPm);
 }
 
-window.addEventListener("DOMContentLoaded", getWeather);
+window.addEventListener("DOMContentLoaded", getCoordinators);
 window.addEventListener("DOMContentLoaded", getDayAndTime);
 
 $("#refresh").click(function () {
