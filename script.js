@@ -69,11 +69,11 @@ function getDayAndTime(){
     month = date.getMonth(),
     day = date.getDate(),
     weekdayIndex = date.getDay(),
-    amPm = ' AM';
+    amPm = ' am';
 
     if (hours > 12){
         hours -= 12;
-        amPm = ' PM';
+        amPm = ' pm';
     } else if (hours === 0){
         hours = 12;
     }
@@ -87,12 +87,14 @@ function getDayAndTime(){
 
     var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     
-    //$("#day-time").text(weekday[day] + ", " + hours + ":" + minutes + amPm);
-
     $("#day-time").text(weekday[weekdayIndex] + ", " + monthsNames[month] + " " + day);
+    $("#time").text("updated at " + hours + ":" + minutes + amPm);
 }
-
-
 
 window.addEventListener("DOMContentLoaded", getWeather);
 window.addEventListener("DOMContentLoaded", getDayAndTime);
+
+$("#refresh").click(function () {
+   getWeather();
+   getDayAndTime();
+});

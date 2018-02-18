@@ -66,10 +66,21 @@ h1 {
 
 #place {
     font-size: 1rem;
+    margin-bottom: 2rem;
 }
 
 .day-time-section {
     margin-top: 8rem;
     margin-bottom: 1rem;
     color: rgba(255, 255, 255, 0.8);
+}
+
+.time-updated {
+    display: flex;
+    align-items: center;
+}
+
+.time-updated p{
+    font-size: 0.8rem;
+    margin-right: 0.3rem;
 }
