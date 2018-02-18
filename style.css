@@ -93,6 +93,7 @@ h1 {
 
 #loader {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   border: 5px solid #f3f3f3;
   border-radius: 50%;
   border-top: 10px solid #b1aad4;
