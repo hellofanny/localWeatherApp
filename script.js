@@ -95,5 +95,14 @@ window.addEventListener("DOMContentLoaded", getDayAndTime);
 
 $("#refresh").click(function () {
    getWeather();
+   fixToggle();
    getDayAndTime();
 });
+
+
+function fixToggle(){
+    if($("#fahrenheit").hasClass('selected')){
+        $("#fahrenheit").removeClass('selected');
+        $("#celsius").addClass('selected');
+    }
+}
