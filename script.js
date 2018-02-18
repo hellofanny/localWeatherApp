@@ -1,3 +1,4 @@
+
 //What's the weather like?
 
 var currentLat = "";
@@ -19,7 +20,7 @@ function handle_error(error) {
 
     //console.log(error.code);
 
-    $("#message-error").show(); 
+    $("#message-error").show();
 
     var errorMessage;
     switch (error.code) {
@@ -128,8 +129,8 @@ $(document).ready(function () {
 window.addEventListener("DOMContentLoaded", getDayAndTime);
 
 $("#refresh").click(function () {
-    $("#message-error").hide(); 
-    $("#display-infos").hide();    
+    $("#message-error").hide();
+    $("#display-infos").hide();
     $("#loader").show();
     getCoordinators();
     getDayAndTime();
