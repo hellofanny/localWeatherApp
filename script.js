@@ -9,11 +9,38 @@ var baseURL = "https://fcc-weather-api.glitch.me/api/current?lat=";
 
 function getCoordinators() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setPosition);
+        navigator.geolocation.getCurrentPosition(setPosition, handle_error);
     } else {
         console.log("Geolocation is not supported by this browser.");
     }
 }
+
+function handle_error(error) {
+
+    console.log(error.code);
+
+    $('#scales-options').hide();
+
+    var errorMessage;
+    switch (error.code) {
+        case 1:
+            errorMessage = "Please allow the request for Geolocation.";
+            break;
+        case 2:
+            errorMessage = "Sorry, location information is unavailable.";
+            break;
+        case 3:
+            errorMessage = "The request to get user location timed out.";
+            break;
+        default:
+            errorMessage = "An unknown error occurred. Try again."
+    }
+    $('#temperature-scale').append('<p style="padding-top: 2rem;">'+ errorMessage +'</p>');
+    
+}
+
+
+
 
 function setPosition(position) {
     console.log("lat:" + position.coords.latitude);
@@ -21,12 +48,13 @@ function setPosition(position) {
 
     currentLat = position.coords.latitude;
     currentLon = position.coords.longitude;
+
     getWeather();
 }
 
 function getWeather() {
 
-    var testURL = "https://fcc-weather-api.glitch.me/api/current?lat=35&lon=139";
+    //var testURL = "https://fcc-weather-api.glitch.me/api/current?lat=35&lon=139";
     var requestURL = baseURL + currentLat + "&lon=" + currentLon;
 
     $.getJSON(requestURL,
@@ -39,12 +67,14 @@ function getWeather() {
             $("#icon-weather").attr("src", iconURL);
             var place = data.name + ", " + data.sys.country;
             $("#place").text(place);
+            console.log("Its working!");
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
             console.log("Failed to retrieve weather!");
         })
     $.ajaxSetup({ cache: false });
+    fixToggle();
 }
 
 $("#scales-options p").click(function () {
@@ -61,19 +91,19 @@ function convertToFahrenheit() {
     return ((temperature * 1.8) + 32);
 }
 
-function getDayAndTime(){
-    var date = new Date(); 
+function getDayAndTime() {
+    var date = new Date();
     var hours = date.getHours(),
-    minutes = date.getMinutes(),
-    month = date.getMonth(),
-    day = date.getDate(),
-    weekdayIndex = date.getDay(),
-    amPm = ' am';
+        minutes = date.getMinutes(),
+        month = date.getMonth(),
+        day = date.getDate(),
+        weekdayIndex = date.getDay(),
+        amPm = ' am';
 
-    if (hours > 12){
+    if (hours > 12) {
         hours -= 12;
         amPm = ' pm';
-    } else if (hours === 0){
+    } else if (hours === 0) {
         hours = 12;
     }
 
@@ -82,10 +112,10 @@ function getDayAndTime(){
     }
 
     var monthsNames = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
+        "August", "September", "October", "November", "December"];
 
     var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    
+
     $("#day-time").text(weekday[weekdayIndex] + ", " + monthsNames[month] + " " + day);
     $("#time").text("updated at " + hours + ":" + minutes + amPm);
 }
@@ -94,14 +124,13 @@ window.addEventListener("DOMContentLoaded", getCoordinators);
 window.addEventListener("DOMContentLoaded", getDayAndTime);
 
 $("#refresh").click(function () {
-   getWeather();
-   fixToggle();
-   getDayAndTime();
+    getCoordinators();
+    getDayAndTime();
 });
 
 
-function fixToggle(){
-    if($("#fahrenheit").hasClass('selected')){
+function fixToggle() {
+    if ($("#fahrenheit").hasClass('selected')) {
         $("#fahrenheit").removeClass('selected');
         $("#celsius").addClass('selected');
     }

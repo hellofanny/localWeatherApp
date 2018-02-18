@@ -47,7 +47,7 @@ h1 {
     cursor: pointer;
 }
 
-.temperature-scale {
+#temperature-scale {
     display: flex;
     align-items: center;
 }
