@@ -1,0 +1,74 @@
+/*--What's the weather like?-->*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
+
+body {
+    background-color: #5F4B8B;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 4rem;
+}
+
+.temp-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#icon-weather {
+    height: 1.5rem;
+    padding-right: 3px;
+}
+
+#scales-options{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+
+#scales-options p{
+    margin-bottom: 0.2rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.temperature-scale {
+    display: flex;
+    align-items: center;
+}
+
+.display-infos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selected {
+    color: white !important;
+    font-weight: 500;
+}
+
+#weather {
+    margin-bottom: 0;
+}
+
+#place {
+    font-size: 1rem;
+}
+
+.day-time-section {
+    margin-top: 8rem;
+    margin-bottom: 1rem;
+}
