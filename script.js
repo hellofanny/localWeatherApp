@@ -66,7 +66,9 @@ function getDayAndTime(){
     var date = new Date(); 
     var hours = date.getHours(),
     minutes = date.getMinutes(),
-    day = date.getDay(),
+    month = date.getMonth(),
+    day = date.getDate(),
+    weekdayIndex = date.getDay(),
     amPm = ' AM';
 
     if (hours > 12){
@@ -80,9 +82,14 @@ function getDayAndTime(){
         minutes = '0' + minutes;
     }
 
+    var monthsNames = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
+
     var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     
-    $("#day-time").text(weekday[day] + ", " + hours + ":" + minutes + amPm);
+    //$("#day-time").text(weekday[day] + ", " + hours + ":" + minutes + amPm);
+
+    $("#day-time").text(weekday[weekdayIndex] + ", " + monthsNames[month] + " " + day);
 }
 
 
