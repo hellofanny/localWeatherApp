@@ -74,6 +74,7 @@ function getWeather() {
             console.log("Failed to retrieve weather!");
         })
     $.ajaxSetup({ cache: false });
+    $("#scales-options").show();
     fixToggle();
 }
 
@@ -120,7 +121,13 @@ function getDayAndTime() {
     $("#time").text("updated at " + hours + ":" + minutes + amPm);
 }
 
-window.addEventListener("DOMContentLoaded", getCoordinators);
+
+$(document).ready(function () {
+    $("#scales-options").hide();
+    getCoordinators();
+});
+
+//window.addEventListener("DOMContentLoaded", getCoordinators);
 window.addEventListener("DOMContentLoaded", getDayAndTime);
 
 $("#refresh").click(function () {
