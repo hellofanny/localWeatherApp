@@ -17,9 +17,9 @@ function getCoordinators() {
 
 function handle_error(error) {
 
-    console.log(error.code);
+    //console.log(error.code);
 
-    $('#scales-options').hide();
+    $("#message-error").show(); 
 
     var errorMessage;
     switch (error.code) {
@@ -35,12 +35,8 @@ function handle_error(error) {
         default:
             errorMessage = "An unknown error occurred. Try again."
     }
-    $('#temperature-scale').append('<p style="padding-top: 2rem;">'+ errorMessage +'</p>');
-    
+    $('#message-error').text(errorMessage);
 }
-
-
-
 
 function setPosition(position) {
     console.log("lat:" + position.coords.latitude);
@@ -74,7 +70,8 @@ function getWeather() {
             console.log("Failed to retrieve weather!");
         })
     $.ajaxSetup({ cache: false });
-    $("#scales-options").show();
+    $("#loader").hide();
+    $("#display-infos").show();
     fixToggle();
 }
 
@@ -123,7 +120,7 @@ function getDayAndTime() {
 
 
 $(document).ready(function () {
-    $("#scales-options").hide();
+    $("#display-infos").hide();
     getCoordinators();
 });
 
@@ -131,6 +128,9 @@ $(document).ready(function () {
 window.addEventListener("DOMContentLoaded", getDayAndTime);
 
 $("#refresh").click(function () {
+    $("#message-error").hide(); 
+    $("#display-infos").hide();    
+    $("#loader").show();
     getCoordinators();
     getDayAndTime();
 });
