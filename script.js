@@ -60,7 +60,7 @@ function getWeather() {
     $.getJSON(requestURL,
         function (data) {
             temperature = data.main.temp;
-            $("#temperature").text(temperature + "º");
+            $("#temperature").text(temperature.toPrecision(2) + "º");
             console.log(data);
             $("#weather").text(data.weather[0].main);
             var iconURL = data.weather[0].icon;
@@ -83,12 +83,12 @@ $("#scales-options p").click(function () {
     if ($(this).attr("id") == "fahrenheit") {
         $("#temperature").text(convertToFahrenheit() + "º");
     } else {
-        $("#temperature").text(temperature + "º");
+        $("#temperature").text(temperature.toPrecision(2) + "º");
     }
 });
 
 function convertToFahrenheit() {
-    return ((temperature * 1.8) + 32);
+    return ((temperature * 1.8) + 32).toPrecision(2);
 }
 
 function getDayAndTime() {
